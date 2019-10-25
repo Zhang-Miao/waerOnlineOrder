@@ -101,6 +101,11 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
 
         <!-- 转换对象到json字符串 -->
@@ -110,8 +115,7 @@
             <version>1.2.47</version>
         </dependency>
 
-
-        <!-- @Responsebody注解依赖包 -->
+        <!-- 注解依赖包 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

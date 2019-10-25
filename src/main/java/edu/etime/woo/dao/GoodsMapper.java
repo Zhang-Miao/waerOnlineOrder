@@ -1,5 +1,6 @@
 package edu.etime.woo.dao;
 
+import edu.etime.woo.dto.GoodsDto;
 import edu.etime.woo.pojo.Goods;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +24,8 @@ public interface GoodsMapper {
 
     /**
      * 查询goods信息  可以查询全部，安状态查询，按那么查询
-     * @param goods
+     * @param gdto
      * @return
      */
-    List<Goods> findGoodsList(Goods goods);
+    List<GoodsDto> selectList(GoodsDto gdto);
 }

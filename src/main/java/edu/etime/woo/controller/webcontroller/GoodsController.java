@@ -1,12 +1,15 @@
 package edu.etime.woo.controller.webcontroller;
 
-import edu.etime.woo.pojo.Goods;
+import edu.etime.woo.dto.GoodsDto;
 import edu.etime.woo.service.impl.GoodsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("manage/goods")
-public class GoodsController {
+public class GoodsController{
 
     @Autowired
     private GoodsServices gservices;
@@ -23,15 +26,22 @@ public class GoodsController {
 
     /**
      * 初始化菜品信息列表 地址：localhost:8080/manage/goods/list
+     *
      * @param model
-     * @param goods
+     * @param gdto
      * @return
      */
     @RequestMapping("/list")
-    public String list(Model model,Goods goods){
-        List<Goods> goodsList=gservices.findGoodsList(goods);
-        model.addAttribute("list",goodsList);
-        System.out.print(goods);
+    public String list(Model model, GoodsDto gdto) {
+        List<GoodsDto> list = gservices.selectList(gdto);
+        model.addAttribute("list", list);
         return "/goods/list";
     }
+
+    @RequestMapping("/add")
+    public String add() {
+        return "/goods/add";
+    }
+
+
 }

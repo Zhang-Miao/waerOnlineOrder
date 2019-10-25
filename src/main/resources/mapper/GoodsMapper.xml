@@ -10,7 +10,7 @@
     <result column="GIMG" property="gimg" jdbcType="VARCHAR" />
     <result column="GTIME" property="gtime" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.etime.woo.pojo.Goods" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="edu.etime.woo.dto.GoodsDto" extends="BaseResultMap" >
     <result column="GCONTENT" property="gcontent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -143,17 +143,18 @@
     where GID = #{gid,jdbcType=VARCHAR}
   </update>
 
-  <select id="findGoodsList" resultMap="ResultMapWithBLOBs" parameterType="edu.etime.woo.pojo.Goods" >
+  <select id="selectList" resultMap="ResultMapWithBLOBs" parameterType="edu.etime.woo.dto.GoodsDto" >
     select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from goods  where 0=0
+    GID, goods.GTID, GNAME, GPRICE, GSTATE, GIMG, GTIME, GCONTENT,goodstype.gtname
+    from goods  inner join goodstype  on goods.gtid=goodstype.gtid where 0=0
     <if test="gstate!=-1">
       and  gstate=#{gstate}
     </if>
-    <if test="gname!=null and gname!='' ">
+    <if test="gname!=null and gname!='' and gtname==null and gename=='' ">
     and  gname like  '%${gname}%'
+  </if>
+    <if test="gname!=null and gname!='' and gtname!=null and gename!='' ">
+      and  gname =#{gname}   and  gtname={gtname}
     </if>
   </select>
 

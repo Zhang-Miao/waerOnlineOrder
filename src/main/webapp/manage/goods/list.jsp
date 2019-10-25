@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -22,13 +22,13 @@
     <li class="active">菜品列表</li>
 </ul>
 <div>
-    <form class="search-well" action="${pageContext.request.contextPath }/manage/goods/list" method="post">
+    <form class="search-well" action="${pageContext.request.contextPath }/manage/goods/list" >
         菜名：<input type="text" name="gname" value="${param.gname}"/>
         状态：
         <select name="gstate">
             <c:choose>
                 <c:when test="${param.gstate==1}">
-                    <option value="-1" >全部</option>
+                    <option value="-1">全部</option>
                     <option value="1" selected="selected">可用</option>
                     <option value="0">不可用</option>
                 </c:when>
@@ -45,39 +45,46 @@
             </c:choose>
         </select>
 
-        <input type="submit" value="查找" />
-        <input type="button" value="增加" onclick="window.location.href='${pageContext.request.contextPath}/manage/goods/add'" />
+        <input type="submit" value="查找"/>
+        <input type="button" value="增加"
+               onclick="window.location.href='${pageContext.request.contextPath}/manage/goods/toadd'"/>
     </form>
     <table class="table table-bordered">
         <thead>
         <tr>
             <th>菜名</th>
+            <th>菜品类型</th>
+            <th>封面</th>
             <th>价格</th>
             <th>描述</th>
+            <th>需要时间</th>
+            <th>状态</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${list}" var="goods">
-
+        <c:forEach items="${list}" var="gdto">
             <tr>
-                <td>${goods.gname}</td>
-                <td>${goods.gprice}</td>
-                <td>${goods.gcontent}</td>
+                <td>${gdto.gname}</td>
+                <td>${gdto.gtname}</td>
+                <td><img src="${gdto.gimg}"></td>
+                <td>${gdto.gprice}/份</td>
+                <td>${gdto.gcontent}</td>
+                <td>${gdto.gtime}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${goods.gstate==1}">可用</c:when>
+                        <c:when test="${gdto.gstate==1}">可用</c:when>
                         <c:otherwise>不可用</c:otherwise>
                     </c:choose>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath }/manage/goods/toedit${goods.gid}">编辑</a>
+                    <a href="${pageContext.request.contextPath }/manage/goods/toedit${gdto.gid}">编辑</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <%--<%@ include file="/tools/pager.jsp" %>--%>
+    <%--<%@ include file="/tools/pager.js p" %>--%>
 </div>
 </body>
 </html>
