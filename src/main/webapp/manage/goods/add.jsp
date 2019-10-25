@@ -18,19 +18,33 @@
 <body>
 <input type="text" value="川菜" id="gtname"><span id="ssss"></span>
 <input type="text" id="gname" onblur="add()">
-
+<button id="but">点击</button>
 <script>
-    var add=function () {
-        $.ajax({
-            url:"${pageContext.request.contextPath}/manage/goods/ajax",
-            data:{"gtname":$("#gtname").val(),"gname":$("#gname").val()},
-            success:function (data) {
-               alert(data);
-               console.log(data)
-            }
-            })
-    }
-
+//    var add=function () {
+        <%--$.ajax({--%>
+            <%--url:"${pageContext.request.contextPath}/manage/goods/ajax",--%>
+            <%--data:{"gtname":$("#gtname").val(),"gname":$("#gname").val()},--%>
+            <%--success:function (data) {--%>
+               <%--alert(data);--%>
+               <%--console.log(data)--%>
+            <%--}--%>
+            <%--})--%>
+    <%--}--%>
+    $(function(){
+        alert("asd");
+        $("#but").on("click",function(){
+            $.ajax({
+                type: "post",
+                url: "${pageContext.request.contextPath }/ss/aa",
+                contentType: "application/json;charset=utf-8",
+                data: '{"roleName":"asdfadsf"}',
+                dataType: "json",
+                success:function(data){
+                    alert(data);
+                }
+        })
+    })
+})
 
 
 
