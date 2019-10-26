@@ -19,6 +19,15 @@
     from sysuser
     where USERID = #{userid,jdbcType=VARCHAR}
   </select>
+  <!-- 根据用户名和密码查询一个用户-->
+  <select id="selectUserByUserName" parameterType="edu.etime.woo.pojo.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sysuser
+    <where>
+      USERNAME=#{username} and USERPWD=#{userpwd}
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from sysuser
     where USERID = #{userid,jdbcType=VARCHAR}
