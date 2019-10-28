@@ -42,13 +42,13 @@ public class SysFunServiceImpl implements SysFunService {
     }
 
     /**
-     *
+     * 修改功能
      * @param sysFun
      * @return
      */
     @Override
     public int update(SysFun sysFun) {
-        return 0;
+        return mapper.updateByPrimaryKey(sysFun);
     }
 
     @Override

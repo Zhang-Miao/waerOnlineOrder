@@ -77,13 +77,13 @@
             }
             $.ajax({
                 type: "POST",
-                url: "${pageContext.request.contextPath}/Sysfun/"+cmd,
+                url: "${pageContext.request.contextPath}/SysFun/"+cmd,
                 data: "funpid="+funpid+"&funid="+funid+"&funname="+funname+"&funurl="+funurl+"&funstate="+funstate,
                 success: function(msg){
                     if(msg=="0"){
                         alert("保存失败");
                     }else{
-                        alert("保存成功")
+                        alert("保存成功");
                         $("body").load("${pageContext.request.contextPath}/Sysfun/list");
                     }
                 }
@@ -103,6 +103,9 @@
     </style>
 </head>
 <body>
+
+
+
 <div class="row-fluid">
     <!-- 系统功能树 begin -->
     <div class="span3" id="menu" style="margin-left: 5px;">

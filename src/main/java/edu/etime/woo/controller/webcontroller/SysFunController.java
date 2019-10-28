@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.UUID;
@@ -51,6 +52,7 @@ public class SysFunController {
      * @return
      */
     @RequestMapping("/edit")
+    @ResponseBody
     public Integer edit(SysFun sysFun){
         return service.update(sysFun);
     }
@@ -61,6 +63,7 @@ public class SysFunController {
      * @return
      */
     @RequestMapping("/add")
+    @ResponseBody
     public Integer add(SysFun sysFun){
         sysFun.setFunid(UUID.randomUUID().toString());
         return service.insert(sysFun);
