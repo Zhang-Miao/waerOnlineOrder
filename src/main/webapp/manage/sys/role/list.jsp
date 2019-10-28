@@ -21,6 +21,10 @@
             type="text/javascript"></script>
 </head>
 <body>
+<ul class="breadcrumb">
+    <li><a href="#">角色管理</a> <span class="divider">/</span></li>
+    <li class="active">角色列表</li>
+</ul>
     <form action="${pageContext.request.contextPath}/SysRole/rolelist">
             <label>角色名：</label>
             <input type="text" name="rolename" value="${param.rolename}"/>
@@ -65,7 +69,10 @@
                             <c:otherwise>不可用</c:otherwise>
                         </c:choose>
                     </td>
-                    <td><a href="${pageContext.request.contextPath}/SysRole/toedit?${sysrole.roleid}">编辑</a></td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/SysRole/toedit/${sysrole.roleid}">编辑</a>
+                        <a href="${pageContext.request.contextPath}/SysRoleFun/init/${sysrole.roleid}">权限</a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>

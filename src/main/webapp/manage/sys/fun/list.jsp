@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>角色管理</title>
+    <title>功能管理</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css"
@@ -77,14 +77,14 @@
             }
             $.ajax({
                 type: "POST",
-                url: "${pageContext.request.contextPath}/sys/fun/"+cmd,
+                url: "${pageContext.request.contextPath}/Sysfun/"+cmd,
                 data: "funpid="+funpid+"&funid="+funid+"&funname="+funname+"&funurl="+funurl+"&funstate="+funstate,
                 success: function(msg){
                     if(msg=="0"){
                         alert("保存失败");
                     }else{
                         alert("保存成功")
-                        $("body").load("${pageContext.request.contextPath}/sys/fun/list");
+                        $("body").load("${pageContext.request.contextPath}/Sysfun/list");
                     }
                 }
             });
@@ -103,6 +103,72 @@
     </style>
 </head>
 <body>
+<div class="row-fluid">
+    <!-- 系统功能树 begin -->
+    <div class="span3" id="menu" style="margin-left: 5px;">
+        <dl>
+            <c:forEach items="${funlist}" var="fun">
+                <c:if test="${fun.funpid==\"-1\"}">
+                    <dt datapname="无" dataid="${fun.funid}" dataname="${fun.funname}"
+                        datapid="-1" dataurl="" datastate="${fun.funstate}"
+                        onclick="check(this)">${fun.funname}</dt>
+                </c:if>
+                <c:forEach items="${funlist}" var="child">
+                    <c:if test="${child.funpid==fun.funid}">
+                        <dd datapname="${child.funpname}" dataid="${child.funid}"
+                            dataname="${child.funname}" dataurl="${child.funurl}"
+                            datastate="${child.funstate}" datapid="${child.funpid}"
+                            onclick="check(this)">${child.funname}</dd>
+                    </c:if>
+                </c:forEach>
+            </c:forEach>
+        </dl>
+        <input class="btn btn-primary" type="button" value="增加根节点"
+               onclick="addroot()" />
+    </div>
+    <!-- 系统功能树 end -->
 
+    <!-- 系统功能编辑 begin -->
+    <div class="span8" id="main">
+        <div class="control-group">
+            <label class="control-label" for="funpname">父功能</label>
+            <div class="controls">
+                <input type="text" name="funpname" id="funpname" readonly />
+                <input type="hidden" name="funpid" id="funpid" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="funname">功能名称</label>
+            <div class="controls">
+                <input type="text" name="funname" id="funname" />
+                <input type="hidden" name="funid" id="funid" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="funurl">功能地址</label>
+            <div class="controls">
+                <input type="text" name="funurl" id="funurl" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="funstate">功能状态</label>
+            <div class="controls">
+                <select id="funstate" name="funstate">
+                    <option value="1">可用</option>
+                    <option value="0">不可用</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="button" class="btn" id="addchild" value="增加子节点"
+                       disabled="disabled" onclick="addchild()" />
+                <input type="button"
+                       class="btn btn-primary" value="保存" onclick="save()" />
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+</div>
 </body>
 </html>

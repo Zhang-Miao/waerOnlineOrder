@@ -1,5 +1,6 @@
 package edu.etime.woo.service.interfaces;
 
+import edu.etime.woo.dto.SysFunDto;
 import edu.etime.woo.pojo.SysFun;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface SysFunService {
 
     //查询功能列表
-    List<SysFun> selectList();
+    List<SysFunDto> selectList();
 
     //插入单个功能数据
     int insert(SysFun sysFun);

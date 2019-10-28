@@ -1,8 +1,10 @@
 package edu.etime.woo.service.impl;
 
 import edu.etime.woo.dao.SysFunMapper;
+import edu.etime.woo.dto.SysFunDto;
 import edu.etime.woo.pojo.SysFun;
 import edu.etime.woo.service.interfaces.SysFunService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 @Service
 public class SysFunServiceImpl implements SysFunService {
 
+    @Autowired
     private SysFunMapper mapper;
 
     /**
@@ -24,8 +27,8 @@ public class SysFunServiceImpl implements SysFunService {
      * @return
      */
     @Override
-    public List<SysFun> selectList() {
-        return null;
+    public List<SysFunDto> selectList() {
+        return mapper.selectList();
     }
 
     /**

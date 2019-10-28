@@ -10,70 +10,81 @@ import edu.etime.woo.pojo.SysFun;
  */
 
 public class SysFunDto extends SysFun {
-    private String funid;
-    private String funpid;
-    private String funname;
-    private String funurl;
-    private Integer funstate;
+    private String funpname;
+    private String rolefunid;
+    private String roleid;
 
-    @Override
-    public String toString() {
-        return "SysFunDto{" +
-                "funid='" + funid + '\'' +
-                ", funpid='" + funpid + '\'' +
-                ", funname='" + funname + '\'' +
-                ", funurl='" + funurl + '\'' +
-                ", funstate=" + funstate +
-                '}';
+    public String getRolefunid() {
+        return rolefunid;
+    }
+
+    public void setRolefunid(String rolefunid) {
+        this.rolefunid = rolefunid;
+    }
+
+    public String getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(String roleid) {
+        this.roleid = roleid;
+    }
+
+    public String getFunpname() {
+        return funpname;
     }
 
     @Override
     public String getFunid() {
-        return funid;
+        return super.getFunid();
     }
 
     @Override
     public void setFunid(String funid) {
-        this.funid = funid;
-    }
-
-    @Override
-    public String getFunpid() {
-        return funpid;
-    }
-
-    @Override
-    public void setFunpid(String funpid) {
-        this.funpid = funpid;
+        super.setFunid(funid);
     }
 
     @Override
     public String getFunname() {
-        return funname;
+        return super.getFunname();
     }
 
     @Override
     public void setFunname(String funname) {
-        this.funname = funname;
+        super.setFunname(funname);
+    }
+
+    @Override
+    public String getFunpid() {
+        return super.getFunpid();
+    }
+
+    @Override
+    public void setFunpid(String funpid) {
+        super.setFunpid(funpid);
     }
 
     @Override
     public String getFunurl() {
-        return funurl;
+        return super.getFunurl();
     }
 
     @Override
     public void setFunurl(String funurl) {
-        this.funurl = funurl;
+        super.setFunurl(funurl);
     }
 
     @Override
     public Integer getFunstate() {
-        return funstate;
+        return super.getFunstate();
     }
 
     @Override
     public void setFunstate(Integer funstate) {
-        this.funstate = funstate;
+        super.setFunstate(funstate);
+    }
+
+    public void setFunpname(String funpname) {
+        this.funpname = funpname;
     }
 }
