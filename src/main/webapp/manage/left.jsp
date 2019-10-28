@@ -59,10 +59,10 @@
 							<li>
 								<ul class="hidediv" tag="sysmanger">
 									<li class="li2"><a
-										href="${pageContext.request.contextPath}${child.funaddr}"
+										href="${pageContext.request.contextPath}${child.funurl}"
 										target="rightFrame">
 											<dd datafname="${child.funpname}" dataid="${child.funid}"
-												dataname="${child.funname}" dataurl="${child.funaddr}"
+												dataname="${child.funname}" dataurl="${child.funurl}"
 												 datafid="${child.funpid}"
 												onclick="check(this)">${child.funname}</dd>
 									</a></li>
