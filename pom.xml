@@ -95,11 +95,24 @@
             <version>5.1.5.RELEASE</version>
         </dependency>
 
+        <!-- mybatis分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+
+
         <!-- jstl -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
         </dependency>
 
 
@@ -110,8 +123,7 @@
             <version>1.2.47</version>
         </dependency>
 
-
-        <!-- @Responsebody注解依赖包 -->
+        <!-- 注解依赖包 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

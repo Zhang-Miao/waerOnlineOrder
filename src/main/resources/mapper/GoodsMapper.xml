@@ -10,9 +10,11 @@
     <result column="GIMG" property="gimg" jdbcType="VARCHAR" />
     <result column="GTIME" property="gtime" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.etime.woo.pojo.Goods" extends="BaseResultMap" >
+
+  <resultMap id="ResultMapWithBLOBs" type="edu.etime.woo.dto.GoodsDto" extends="BaseResultMap" >
     <result column="GCONTENT" property="gcontent" jdbcType="LONGVARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     GID, GTID, GNAME, GPRICE, GSTATE, GIMG, GTIME
   </sql>
@@ -20,11 +22,9 @@
     GCONTENT
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from goods
+    select
+    GID, goods.GTID, GNAME, GPRICE, GSTATE, GIMG, GTIME, GCONTENT,goodstype.gtname
+    from goods  inner join goodstype  on goods.gtid=goodstype.gtid
     where GID = #{gid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
@@ -139,22 +139,29 @@
       GPRICE = #{gprice,jdbcType=DECIMAL},
       GSTATE = #{gstate,jdbcType=INTEGER},
       GIMG = #{gimg,jdbcType=VARCHAR},
-      GTIME = #{gtime,jdbcType=INTEGER}
+      GTIME = #{gtime,jdbcType=INTEGER},
+      GCONTENT = #{gcontent,jdbcType=LONGVARCHAR}
     where GID = #{gid,jdbcType=VARCHAR}
   </update>
 
-  <select id="findGoodsList" resultMap="ResultMapWithBLOBs" parameterType="edu.etime.woo.pojo.Goods" >
+  <select id="selectList" resultMap="ResultMapWithBLOBs" parameterType="edu.etime.woo.dto.GoodsDto" >
     select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from goods  where 0=0
-    <if test="gstate!=-1">
+    GID, goods.GTID, GNAME, GPRICE, GSTATE, GIMG, GTIME, GCONTENT,goodstype.gtname
+    from goods  inner join goodstype  on goods.gtid=goodstype.gtid where 0=0
+    <if test="gstate!=null and gstate!=-1">
       and  gstate=#{gstate}
     </if>
     <if test="gname!=null and gname!='' ">
-    and  gname like  '%${gname}%'
-    </if>
+    and  gname like #{gname}
+  </if>
+  </select>
+
+
+  <select id="selectByGname" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    GID,GTID, GNAME, GPRICE, GSTATE, GIMG, GTIME, GCONTENT
+    from goods
+    WHERE  gtid = #{gtid} and gname = #{gname}
   </select>
 
 </mapper>
