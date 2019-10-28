@@ -4,6 +4,7 @@ import edu.etime.woo.dto.GoodsDto;
 import edu.etime.woo.pojo.Goods;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -14,7 +15,7 @@ public interface GoodsMapper {
 
     int insertSelective(Goods record);
 
-    Goods selectByPrimaryKey(String gid);
+    GoodsDto selectByPrimaryKey(String gid);
 
     int updateByPrimaryKeySelective(Goods record);
 
@@ -28,4 +29,12 @@ public interface GoodsMapper {
      * @return
      */
     List<GoodsDto> selectList(GoodsDto gdto);
+
+
+    /**
+     * 根据id和name查询，条件放在map中
+     * @param map
+     * @return
+     */
+    Goods selectByGname(HashMap map);
 }
