@@ -21,6 +21,9 @@
             if ($("#gname").val().length == 0) {
                 $("#msg").html("*请输入菜品名称");
             }
+            else if ($("#gimg").val().length == 0) {
+                $("#msg").html("*您需要上传图片菜能提交");
+            }
             else if ($("#gprice").val().length == 0) {
                 $("#msg").html("*请输入菜品价格");
             }
