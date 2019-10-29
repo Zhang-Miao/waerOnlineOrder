@@ -45,7 +45,7 @@
 		<ul class="breadcrumb">
 			<!-- 遍历跟节点 -->
 			<dl>
-				<c:forEach items="${funlist}" var="fun">
+				<c:forEach items="${list}" var="fun">
 					<c:if test="${fun.funpid==\"-1\"}">
 						<li class="li1"><a href="#" marktag="sysmanger">
 								<dt datafname="无" dataid="${fun.funid}"
@@ -54,15 +54,15 @@
 						</a></li>
 					</c:if>
 					<!-- 遍历子节点 -->
-					<c:forEach items="${funlist}" var="child">
+					<c:forEach items="${list}" var="child">
 						<c:if test="${child.funpid==fun.funid}">
 							<li>
 								<ul class="hidediv" tag="sysmanger">
 									<li class="li2"><a
-										href="${pageContext.request.contextPath}${child.funurl}"
+										href="${pageContext.request.contextPath}${child.funaddr}"
 										target="rightFrame">
 											<dd datafname="${child.funpname}" dataid="${child.funid}"
-												dataname="${child.funname}" dataurl="${child.funurl}"
+												dataname="${child.funname}" dataurl="${child.funaddr}"
 												 datafid="${child.funpid}"
 												onclick="check(this)">${child.funname}</dd>
 									</a></li>

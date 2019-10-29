@@ -7,12 +7,6 @@ public class SysRoleFun {
 
     private String funid;
 
-    public SysRoleFun(String rolefunid, String roleid, String funid) {
-        this.rolefunid = rolefunid;
-        this.roleid = roleid;
-        this.funid = funid;
-    }
-
     public String getRolefunid() {
         return rolefunid;
     }

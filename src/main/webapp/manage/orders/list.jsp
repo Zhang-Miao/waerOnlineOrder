@@ -84,7 +84,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${p.list}" var="odto">
+        <c:forEach items="${list}" var="odto">
             <tr>
                 <td>${odto.nickname}</td>
                 <td>${odto.ordertime}</td>
@@ -106,7 +106,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <%@ include file="/basepage/pager.jsp" %>
 </div>
 
 

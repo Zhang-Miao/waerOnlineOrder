@@ -30,9 +30,9 @@ public class OrderDetailController {
      */
     @RequestMapping("/list/{orderid}")
     public String list(@PathVariable("orderid") String orderid, Model model){
-        List<OrderDetailDto> list=orderDetailService.selectList(orderid);
-        model.addAttribute("list",list);
-        return "/orderdetail/list";
+            List<OrderDetailDto> list=orderDetailService.selectList(orderid);
+            model.addAttribute("list",list);
+            return "/orderdetail/list";
     }
 
 

@@ -15,25 +15,11 @@
     from sysrolefun
     where ROLEFUNID = #{rolefunid,jdbcType=VARCHAR}
   </select>
-
-<!--  根据roleid查询功能列表  -->
-  <select id="selectByRoleId" resultType="edu.etime.woo.dto.SysFunDto" parameterType="java.lang.String" >
-    select b.roleid,a.funid,a.funname,a.funpid,b.rolefunid from sysfun as a
-    left outer join sysrolefun as b on a.funid = b.funid and roleid = #{roleid}
-    where a.funstate = 1
-  </select>
-
-<!--  根据roleid删除-->
-  <delete id="deleteByRoleId" parameterType="java.lang.String">
-    delete  from sysrolefun
-    where roleid = '${roleid}'
-  </delete>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from sysrolefun
     where ROLEFUNID = #{rolefunid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="edu.etime.woo.pojo.SysRoleFun">
+  <insert id="insert" parameterType="edu.etime.woo.pojo.SysRoleFun" >
     insert into sysrolefun (ROLEFUNID, ROLEID, FUNID
       )
     values (#{rolefunid,jdbcType=VARCHAR}, #{roleid,jdbcType=VARCHAR}, #{funid,jdbcType=VARCHAR}

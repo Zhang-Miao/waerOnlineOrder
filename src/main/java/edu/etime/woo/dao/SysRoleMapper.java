@@ -3,8 +3,6 @@ package edu.etime.woo.dao;
 import edu.etime.woo.pojo.SysRole;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 
 @Component
 public interface SysRoleMapper {
@@ -19,11 +17,4 @@ public interface SysRoleMapper {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
-
-    //查询角色列表
-    List<SysRole> selectList(SysRole sysRole);
-
-
-    //查询所有角色名称
-    List<String> selectRoleName();
 }

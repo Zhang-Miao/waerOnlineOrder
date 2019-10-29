@@ -7,20 +7,6 @@ public class SysRole {
 
     private Integer rolestate;
 
-    public SysRole() {
-    }
-
-    public SysRole(String roleid, String rolename, Integer rolestate) {
-        this.roleid = roleid;
-        this.rolename = rolename;
-        this.rolestate = rolestate;
-    }
-
-    public SysRole(String rolename, Integer rolestate) {
-        this.rolename = rolename;
-        this.rolestate = rolestate;
-    }
-
     public String getRoleid() {
         return roleid;
     }

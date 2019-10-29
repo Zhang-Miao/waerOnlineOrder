@@ -21,9 +21,6 @@
             if ($("#gname").val().length == 0) {
                 $("#msg").html("*请输入菜品名称");
             }
-            else if ($("#gimg").val().length == 0) {
-                $("#msg").html("*您需要上传图片菜能提交");
-            }
             else if ($("#gprice").val().length == 0) {
                 $("#msg").html("*请输入菜品价格");
             }
@@ -69,23 +66,28 @@
             }
         }
 
-        <%--图片上传--%>
-        function fileupload() {
-            var formData = new FormData();
-            formData.append("file",$('#file')[0].files[0]);
-                $.ajax({
-                    type:"post",
-                    url: "${pageContext.request.contextPath}/goods/fileupload",
-                    data: formData,
-                    cache: false,//文件不设置缓存
-                    processData: false,//数据不被转换为字符串
-                    contentType: false,//上传文件时使用，避免 JQuery 对其操作
-                    success: function (data) {
-                        $("#gimg").val(data);
-                        $("#msg").html("上传成功");
-                    }
-                })
-        }
+        <%--&lt;%&ndash;图片上传&ndash;%&gt;--%>
+        <%--function file() {--%>
+            <%--var gimg=("#gimg").val();--%>
+            <%--var formData = new FormData($('#gimg')[0]);--%>
+            <%--if(gimg==""){--%>
+                <%--$("#gimg").html("*请选择文件上传");--%>
+            <%--}else{--%>
+                <%--$.ajax({--%>
+                    <%--type:"post",--%>
+                    <%--url: "${pageContext.request.contextPath}/goods/fileUpload",--%>
+                    <%--data: formData,--%>
+                    <%--cache: false,//文件不设置缓存--%>
+                    <%--processData: false,//数据不被转换为字符串--%>
+                    <%--contentType: false,//上传文件时使用，避免 JQuery 对其操作--%>
+                    <%--success: function (data) {--%>
+
+                    <%--}--%>
+                <%--})--%>
+            <%--}--%>
+        <%--}--%>
+
+
     </script>
 
 </head>
@@ -129,12 +131,11 @@
             <div class="control-group">
                 <label class="control-label" for="gimg">菜品图片</label>
                 <div class="controls">
-                    <input type="file" name="file" id="file"/>
-                    <input type="hidden" name="gimg" id="gimg"/>
+                    <input type="file" name="gimg" id="gimg"/>
                 </div>
-                <div class="controls">
-                    <input type="button" value="上传" onclick="fileupload()"/>
-                </div>
+                <%--<div class="controls">--%>
+                    <%--<input type="button" value="上传" onclick="file()"/>--%>
+                <%--</div>--%>
             </div>
 
 

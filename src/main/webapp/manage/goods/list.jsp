@@ -56,14 +56,14 @@
                 onclick="window.location.href='${pageContext.request.contextPath}/goods/toadd';">增加
         </button>
     </form>
-    <table class="table table-bordered" >
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>菜名</th>
             <th>菜品类型</th>
             <th>封面</th>
             <th>价格</th>
-            <th style="width: 200px">描述</th>
+            <th>描述</th>
             <th>需要时间</th>
             <th>状态</th>
             <th>操作</th>
@@ -75,7 +75,7 @@
             <tr>
                 <td>${gdto.gname}</td>
                 <td>${gdto.gtname}</td>
-                <td><img src="${pageContext.request.contextPath}${gdto.gimg}" width="100px"></td>
+                <td><img src="${gdto.gimg}"></td>
                 <td>${gdto.gprice}/份</td>
                 <td>${gdto.gcontent}</td>
                 <td>${gdto.gtime} 分钟</td>

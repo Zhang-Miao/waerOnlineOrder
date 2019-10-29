@@ -15,25 +15,6 @@
     from sysrole
     where ROLEID = #{roleid,jdbcType=VARCHAR}
   </select>
-
-<!-- 查询SysRole列表(可能存在条件查询) -->
-  <select id="selectList" resultMap="BaseResultMap" parameterType="edu.etime.woo.pojo.SysRole" >
-    select
-    <include refid="Base_Column_List"/>
-    from sysrole where 0=0
-<!--    <if test="rolestate!=null and rolestate!=''">-->
-<!--      and rolestate = ${rolestate}-->
-<!--    </if>-->
-    <if test="rolename!=null and rolename!=''">
-      and rolename like '%${rolename}%'
-    </if>
-  </select>
-
-<!--  查询所有角色名称-->
-  <select id="selectRoleName" resultType="String">
-    select rolename from sysrole
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from sysrole
     where ROLEID = #{roleid,jdbcType=VARCHAR}
