@@ -15,6 +15,11 @@
     from customer
     where CUSID = #{cusid,jdbcType=VARCHAR}
   </select>
+
+  <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+  SELECT * FROM Customer
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from customer
     where CUSID = #{cusid,jdbcType=VARCHAR}
