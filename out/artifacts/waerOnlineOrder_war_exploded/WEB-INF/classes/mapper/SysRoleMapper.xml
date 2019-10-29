@@ -30,7 +30,7 @@
   </select>
 
 <!--  查询所有角色名称-->
-  <select id="selectRoleName" resultMap="String">
+  <select id="selectRoleName" resultType="String">
     select rolename from sysrole
   </select>
 

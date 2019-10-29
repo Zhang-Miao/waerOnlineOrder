@@ -16,5 +16,5 @@ public interface OrderDetailService {
      * @param orderid
      * @return
      */
-    List<OrderDetailDto> selectList(String  orderid);
+    List<OrderDetailDto> selectList(String orderid);
 }

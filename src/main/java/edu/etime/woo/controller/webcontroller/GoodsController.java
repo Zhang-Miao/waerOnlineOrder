@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -54,25 +56,10 @@ public class GoodsController {
      *
      * @param model
      * @param goods
-     * @param file
      * @return
      */
     @RequestMapping("/add")
-    public String add(Model model, Goods goods, MultipartFile file) throws IOException {
-        String filename = file.getOriginalFilename();
-        //获取上传文件的后缀
-        int index=filename.lastIndexOf(".");
-        String suffexname=filename.substring(index);
-        //用时间戳给文件命名
-        String newFileName = String.valueOf(System.currentTimeMillis())+ suffexname;
-        //设置保存图片的路径
-        String filePath = "E:\\j2ee\\wearOnlineOrder\\img\\";
-        //封装上传文件位置的全路径
-        File targetFile = new File(filePath, newFileName);
-        //把本地文件上传到封装上传文件位置的全路径
-        file.transferTo(targetFile);
-        //将地址存进数据库
-        goods.setGimg(newFileName);
+    public String add(Model model, Goods goods) throws IOException {
         goods.setGid(UUID.randomUUID().toString());
         int i = goodsService.insert(goods);
         if (i > 0) {
@@ -172,6 +159,38 @@ public class GoodsController {
         }
     }
 
+    /**
+     * 图片上传
+     * @param request
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("/fileupload")
+    @ResponseBody
+    public String fileupload(HttpServletRequest request,MultipartFile file) throws IOException {
+        //保存图片的路径
+        String filePath = "/img";
+        //拼接路径
+        String phycicsPath=request.getServletContext().getRealPath("/")+filePath;
+        //判断路径是否存在
+        if(!new File(phycicsPath).exists()){
+            new File(phycicsPath).mkdirs();
+        }
+        //获取原始图片名称
+        String filename = file.getOriginalFilename();
+        //获取扩展名
+        String suffexname=filename.substring(filename.lastIndexOf("."));
+        //用时间戳命名
+        String newFileName = String.valueOf(System.currentTimeMillis())+suffexname;
+        //保存图片
+        file.transferTo(new File(phycicsPath,newFileName));
+        //返回地址
+        return  filePath+"/"+newFileName;
+    }
+
+
+
 //    /**
 //     * 初始化列表
 //     * 可以进行条件查询
@@ -208,7 +227,7 @@ public class GoodsController {
         if (gdto!= null && gdto.getGname() != null && !gdto.getGname().equals("")) {
             gdto.setGname("%" + gdto.getGname() + "%");
         }
-        Pagers<GoodsDto> p = goodsService.selectListPage(gdto,index,10);
+        Pagers<GoodsDto> p = goodsService.selectListPage(gdto,index,6);
         model.addAttribute("p", p);
         return "/goods/list";
     }

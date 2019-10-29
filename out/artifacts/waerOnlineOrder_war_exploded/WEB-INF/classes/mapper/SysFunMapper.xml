@@ -17,6 +17,15 @@
     from sysfun
     where FUNID = #{funid,jdbcType=VARCHAR}
   </select>
+
+<!-- 查询功能列表 -->
+  <select id="selectList" resultType="edu.etime.woo.dto.SysFunDto" >
+    select
+    a.funid,a.funname,a.funpid,a.funurl,a.funstate,b.funname as funpname
+    from  sysfun as a
+    left outer join sysfun as b on a.funpid = b.funid
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from sysfun
     where FUNID = #{funid,jdbcType=VARCHAR}

@@ -42,6 +42,16 @@
         </property>
     </bean>
 
+
+    <mvc:interceptors>
+        <!-- 按照配置的顺序执行拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="edu.etime.woo.tools.PagerInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
     <!-- 配置转换器 -->
     <mvc:annotation-driven conversion-service="myDate"/>
     <!-- 注册转换器的类 -->
