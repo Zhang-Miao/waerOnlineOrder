@@ -43,17 +43,19 @@ public class LoginController {
         } else {
             session.setAttribute("LOGIN_USER", user);
 
-            return this.initLeft(user,m);
+            return "../index";
         }
     }
 
 
-    private String initLeft(SysUser user,Model model){
-
+    @RequestMapping("/initleft")
+    public String initLeft(Model model,HttpSession session){
+        SysUser user = (SysUser) session.getAttribute("LOGIN_USER");
         //根据当前角色查询权限
         List<SysFun> list = userService.selectFunByRoleId(user.getRoleid());
+        System.out.println(list.size());
         model.addAttribute("funlist",list);
-        return "../index";
+        return "/left";
     }
 
     @RequestMapping("/tologin")

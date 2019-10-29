@@ -21,7 +21,7 @@
 	<frame src="${pageContext.request.contextPath}/manage/top.jsp" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" title="topFrame" />
 	<frameset rows="700,*" cols="*" framespacing="0" frameborder="no" border="0">
 		<frameset rows="*" cols="280,*" framespacing="0" frameborder="no" border="0">
-			<frame src="${pageContext.request.contextPath}/manage/left.jsp" name="leftFrame" scrolling="no" noresize="noresize" id="leftFrame" title="leftFrame" />
+			<frame src="${pageContext.request.contextPath}/login/initleft" name="leftFrame" scrolling="no" noresize="noresize" id="leftFrame" title="leftFrame" />
 			<frame src="${pageContext.request.contextPath}/manage/right.jsp" name="rightFrame"  noresize="noresize" id="rightFrame" title="rightFrame" />
 		</frameset>
 		<noframes><body>
