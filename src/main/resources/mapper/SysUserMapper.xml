@@ -30,10 +30,11 @@
   </select>
 
   <!--根据roleID查询功能列表-->
-  <select id="selectFunByRoleId" parameterType="java.lang.String" resultType="edu.etime.woo.pojo.SysFun" >
-    SELECT a.funid,a.funname,a.funpid,a.funurl,a.funstate FROM sysfun AS a
+  <select id="selectFunByRoleId" parameterType="java.lang.String" resultType="edu.etime.woo.dto.SysFunDto" >
+    SELECT a.funid,a.funname,a.funpid,a.funurl,a.funstate,p.funname AS funpname FROM sysfun AS a
     INNER JOIN sysrolefun AS b ON a.funid = b.funid
-    WHERE b.roleid = #{roleid,jdbcType=VARCHAR}
+    LEFT OUTER JOIN sysfun AS p ON p.funid = a.funpid
+    WHERE b.roleid = #{roleid,jdbcType=VARCHAR} AND a.funstate = 1
   </select>
 
   <select id="findAll" parameterType="edu.etime.woo.pojo.SysUser" resultMap="BaseResultMap">
