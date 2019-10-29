@@ -56,5 +56,5 @@ public interface GoodsTypeService {
      * @param pagesize
      * @return
      */
-    Pagers<GoodsType> selectListPage(GoodsType gt,int pagenum, int pagesize);
+    Pagers<GoodsType> selectListPage(GoodsType gt, int pagenum, int pagesize);
 }

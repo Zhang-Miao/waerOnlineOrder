@@ -46,7 +46,7 @@ public class GoodsTypeController {
         gt.setGtid(UUID.randomUUID().toString());
         int i=goodsTypeService.insert(gt);
         if(i>0){
-         return  "redirect:/goodstype/list";
+            return  "redirect:/goodstype/list";
         }else{
             model.addAttribute("msg", "添加类型失败");
             return  "/goodstype/add";
@@ -90,7 +90,7 @@ public class GoodsTypeController {
         }
         Pagers<GoodsType> p = goodsTypeService.selectListPage(gt,index,10);
         model.addAttribute("p", p);
-        return "/goods/list";
+        return "/goodstype/list";
     }
 
 
@@ -136,13 +136,13 @@ public class GoodsTypeController {
     public String ajaxedit(String gtname,String gtid) throws Exception {
         GoodsType gt=goodsTypeService.selectByGtname(gtname);
         GoodsType gt1=goodsTypeService.selectById(gtid);
-         if(gt!=null  && gt1.getGtname().equals(gt.getGtname()) && gtname.equals(gt1.getGtname())){
+        if(gt!=null  && gt1.getGtname().equals(gt.getGtname()) && gtname.equals(gt1.getGtname())){
             return "f";
         }else if(gt==null){
             return "f";
         }else{
             return "t";
-         }
+        }
     }
 
 
